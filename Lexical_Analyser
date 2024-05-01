@@ -51,6 +51,24 @@ comment "//".*
     printf("CLOSE PARENTHESIS: %s\n", yytext);
 }
 
+"{" {
+    printf("CURLY BRACES:%s\n",yytext);
+}
+"}" {
+    printf("CURLY BRACES:%s\n",yytext);
+}
+
+"," {
+    printf("CURLY BRACES:%s\n",yytext);
+}
+
+\"[^"]*\" {
+    printf("STRING:%s\n",yytext);
+}
+
+"." {
+    printf("CURLY BRACES:%s\n",yytext);
+}
 {whitespace} {
     /* Ignore whitespace */
 }
@@ -59,9 +77,7 @@ comment "//".*
     /* Ignore comments */
 }
 
-"." {
-    printf("UNRECOGNIZED TOKEN: %s\n", yytext);
-}
+
 
 %%
 
