@@ -1,0 +1,71 @@
+%{
+#include <stdio.h>
+%}
+
+digit [0-9]
+number {digit}+
+letter [a-zA-Z]
+identifier {letter}({letter}|{digit})*
+whitespace [ \t\n]+
+comment "//".*
+
+%%
+
+{number} {
+    printf("NUMBER: %s\n", yytext);
+}
+
+{identifier} {
+    printf("IDENTIFIER: %s\n", yytext);
+}
+
+"=" {
+    printf("ASSIGNMENT OPERATOR: %s\n", yytext);
+}
+
+"+" {
+    printf("PLUS OPERATOR: %s\n", yytext);
+}
+
+"-" {
+    printf("MINUS OPERATOR: %s\n", yytext);
+}
+
+"*" {
+    printf("MULTIPLICATION OPERATOR: %s\n", yytext);
+}
+
+"/" {
+    printf("DIVISION OPERATOR: %s\n", yytext);
+}
+
+";" {
+    printf("SEMICOLON: %s\n", yytext);
+}
+
+"(" {
+    printf("OPEN PARENTHESIS: %s\n", yytext);
+}
+
+")" {
+    printf("CLOSE PARENTHESIS: %s\n", yytext);
+}
+
+{whitespace} {
+    /* Ignore whitespace */
+}
+
+{comment} {
+    /* Ignore comments */
+}
+
+"." {
+    printf("UNRECOGNIZED TOKEN: %s\n", yytext);
+}
+
+%%
+
+int main() {
+    yylex();
+    return 0;
+}
